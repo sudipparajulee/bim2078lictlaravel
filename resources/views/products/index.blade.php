@@ -32,6 +32,7 @@
             <td class="border p-2">{{$product->category->name}}</td>
             <td class="border p-2">{{$product->brand->name}}</td>
             <td class="border p-2">
+
                 <img src="{{asset('images/'.$product->photopath)}}" alt="" class="h-20">
             </td>
             <td class="border p-2">
