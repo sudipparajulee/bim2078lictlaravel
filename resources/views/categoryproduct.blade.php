@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-<h1 class="text-blue-800 text-4xl text-center font-bold mt-10">Our Products</h1>
+<h1 class="text-blue-800 text-4xl text-center font-bold mt-10">{{$category->name}} Products</h1>
 
 <div class="grid grid-cols-4 gap-10 px-20 py-12">
     @foreach($products as $product)
@@ -11,7 +11,7 @@
         <p class="text-gray-500">{{$product->description}}</p>
         <div class="flex justify-between items-center mt-4">
             <h1 class="text-xl font-bold">Rs.{{$product->price}}</h1>
-            <button class="bg-gradient-to-r from-red-600 via-yellow-400 to-gray-600 text-white px-3 py-1.5 rounded-lg">Add to Cart</button>
+            <button class="bg-blue-800 text-white px-3 py-1.5 rounded-lg">Add to Cart</button>
         </div>
     </div>
     @endforeach
