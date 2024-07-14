@@ -8,10 +8,10 @@
     <div class="rounded-lg shadow-md p-4">
         <img src="{{asset('images/'.$product->photopath)}}" alt="" class="h-44 w-full object-cover">
         <h1 class="text-xl font-bold mt-2">{{$product->name}}</h1>
-        <p class="text-gray-500">{{$product->description}}</p>
+        <p class="text-gray-500 line-clamp-3">{{$product->description}}</p>
         <div class="flex justify-between items-center mt-4">
             <h1 class="text-xl font-bold">Rs.{{$product->price}}</h1>
-            <button class="bg-gradient-to-r from-red-600 via-yellow-400 to-gray-600 text-white px-3 py-1.5 rounded-lg">Add to Cart</button>
+            <a href="{{route('viewproduct',$product->id)}}" class="bg-gradient-to-r from-red-600 via-yellow-400 to-gray-600 text-white px-3 py-1.5 rounded-lg">View Product</a>
         </div>
     </div>
     @endforeach

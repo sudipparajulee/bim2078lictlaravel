@@ -30,4 +30,10 @@ class PagesController extends Controller
         $products = Product::where('category_id',$id)->get();
         return view('categoryproduct',compact('products','category'));
     }
+
+    public function viewproduct($id)
+    {
+        $product = Product::find($id);
+        return view('viewproduct',compact('product'));
+    }
 }

@@ -16,6 +16,8 @@ Route::get('/contact',[PagesController::class,'contact'])->name('contact');
 
 Route::get('/categoryproduct/{id}',[PagesController::class,'categoryproduct'])->name('categoryproduct');
 
+Route::get('/viewproduct/{id}',[PagesController::class,'viewproduct'])->name('viewproduct');
+
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function (){
