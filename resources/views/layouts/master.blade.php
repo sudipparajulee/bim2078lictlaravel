@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
 </head>
 <body>
+    @include('layouts.alert')
     <nav class="flex justify-between items-center px-20 py-5 shadow-md sticky top-0 bg-white">
         <div>
             <img src="{{asset('logo.png')}}" alt="" class="h-16">
