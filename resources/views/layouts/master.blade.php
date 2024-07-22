@@ -13,6 +13,23 @@
 </head>
 <body>
     @include('layouts.alert')
+    <div class="flex justify-between px-20 bg-blue-500 text-white py-2">
+        <div>
+            <a href=""><i class="ri-phone-fill"></i> 0234324234324</a>
+        </div>
+        <div>
+            @auth
+            <a href="">Hi, {{auth()->user()->name}}</a>
+            <a href="{{route('mycart')}}" class="p-2">My Cart</a>
+            <form action="{{route('logout')}}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="p-2">Logout</button>
+            </form>
+            @else
+            <a href="/login" class="p-2">Login</a>
+            @endauth
+        </div>
+    </div>
     <nav class="flex justify-between items-center px-20 py-5 shadow-md sticky top-0 bg-white">
         <div>
             <img src="{{asset('logo.png')}}" alt="" class="h-16">
@@ -25,15 +42,7 @@
             @foreach($categories as $category)
             <a href="{{route('categoryproduct',$category->id)}}" class="p-2">{{$category->name}}</a>
             @endforeach
-            @auth
-            <a href="">Hi, {{auth()->user()->name}}</a>
-            <form action="{{route('logout')}}" method="POST" class="inline">
-                @csrf
-                <button type="submit" class="p-2">Logout</button>
-            </form>
-            @else
-            <a href="/login" class="p-2">Login</a>
-            @endauth
+
         </div>
     </nav>
 

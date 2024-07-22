@@ -22,4 +22,16 @@ class CartController extends Controller
         Cart::create($data);
         return back()->with('success','Product Added to Card Successfully');
     }
+
+    public function mycart()
+    {
+        $carts = Cart::where('user_id',auth()->user()->id)->get();
+        return view('cart',compact('carts'));
+    }
+
+    public function destroy(Request $request)
+    {
+        Cart::find($request->dataid)->delete();
+        return back()->with('success','Product Removed from Cart Successfully');
+    }
 }
