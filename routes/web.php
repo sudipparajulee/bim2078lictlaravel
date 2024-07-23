@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function(){
     Route::post('cart/store',[CartController::class,'store'])->name('cart.store');
     Route::get('mycart',[CartController::class,'mycart'])->name('mycart');
     Route::delete('cart/destroy',[CartController::class,'destroy'])->name('cart.destroy');
+
+    Route::get('checkout/{id}/',[CartController::class,'checkout'])->name('checkout');
 });
 
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');

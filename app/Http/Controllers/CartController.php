@@ -34,4 +34,13 @@ class CartController extends Controller
         Cart::find($request->dataid)->delete();
         return back()->with('success','Product Removed from Cart Successfully');
     }
+
+    public function checkout($id)
+    {
+        $cart = Cart::find($id);
+        if($cart->user_id != auth()->user()->id){
+            return back()->with('error','Unauthorized Access');
+        }
+        return view('checkout',compact('cart'));
+    }
 }

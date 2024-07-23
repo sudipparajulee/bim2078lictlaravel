@@ -13,7 +13,7 @@
             </div>
             <div class="grid">
                 <a onclick="showmodal('{{$cart->id}}')" class="bg-red-500 h-10 text-center block text-white px-3 py-1 rounded-lg">Remove</a>
-                <a href="" class="bg-green-500 h-10 text-center block text-white px-3 py-1 rounded-lg">Order Now</a>
+                <a href="{{route('checkout',$cart->id)}}" class="bg-green-500 h-10 text-center block text-white px-3 py-1 rounded-lg">Order Now</a>
             </div>
         </div>
         @endforeach
