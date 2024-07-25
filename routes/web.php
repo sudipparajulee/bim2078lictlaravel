@@ -60,6 +60,7 @@ Route::get('/products/{id}/destroy',[ProductController::class,'destroy'])->name(
 
 //Orders
 Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
+Route::get('/orders/{id}/status/{status}',[OrderController::class,'status'])->name('orders.status');
 
 });
 

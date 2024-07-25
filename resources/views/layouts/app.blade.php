@@ -26,7 +26,7 @@
                     <a href="{{route('categories.index')}}" class="block p-3 text-gray-700 hover:bg-gray-300">Category</a>
                     <a href="{{route('products.index')}}" class="block p-3 text-gray-700 hover:bg-gray-300">Product</a>
                     <a href="{{route('brands.index')}}" class="block p-3 text-gray-700 hover:bg-gray-300">Brands</a>
-                    <a href="" class="block p-3 text-gray-700 hover:bg-gray-300">Orders</a>
+                    <a href="{{route('orders.index')}}" class="block p-3 text-gray-700 hover:bg-gray-300">Orders</a>
                     <a href="" class="block p-3 text-gray-700 hover:bg-gray-300">Users</a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf

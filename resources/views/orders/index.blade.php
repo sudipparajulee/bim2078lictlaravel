@@ -5,21 +5,39 @@
 @section('content')
     <table class="w-full">
         <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th>Payment Method</th>
-            <th>Status</th>
+            <th class="border p-2">Order Time</th>
+            <th class="border p-2">Product Image</th>
+            <th class="border p-2">Product Name</th>
+            <th class="border p-2">Customer Name</th>
+            <th class="border p-2">Phone</th>
+            <th class="border p-2">Address</th>
+            <th class="border p-2">Quantity</th>
+            <th class="border p-2">Price</th>
+            <th class="border p-2">Total</th>
+            <th class="border p-2">Payment Method</th>
+            <th class="border p-2">Status</th>
+            <th class="border p-2">Action</th>
         </tr>
         @foreach($orders as $order)
-            <tr>
-                <td>{{ $order->product->name }}</td>
-                <td>{{ $order->quantity }}</td>
-                <td>{{ $order->price }}</td>
-                <td>{{ $order->total }}</td>
-                <td>{{ $order->payment_method }}</td>
-                <td>{{ $order->status }}</td>
+            <tr class="text-center">
+                <td class="border p-2">{{ $order->created_at }}</td>
+                <td class="border p-2">
+                    <img src="{{asset('images/'.$order->product->photopath)}}" alt="" class="h-28">
+                </td>
+                <td class="border p-2">{{ $order->product->name }}</td>
+                <td class="border p-2">{{ $order->name }}</td>
+                <td class="border p-2">{{ $order->phone }}</td>
+                <td class="border p-2">{{ $order->address }}</td>
+                <td class="border p-2">{{ $order->quantity }}</td>
+                <td class="border p-2">{{ $order->price }}</td>
+                <td class="border p-2">{{ $order->quantity * $order->price }}</td>
+                <td class="border p-2">{{ $order->payment_method }}</td>
+                <td class="border p-2">{{ $order->status }}</td>
+                <td class="border p-2 grid gap-1">
+                    <a href="{{route('orders.status',[$order->id,'Pending'])}}" class="bg-blue-600 text-white p-2 rounded-lg ">Pending</a>
+                    <a href="{{route('orders.status',[$order->id,'Processing'])}}" class="bg-yellow-600 text-white p-2 rounded-lg ">Processing</a>
+                    <a href="{{route('orders.status',[$order->id,'Delivered'])}}" class="bg-green-600 text-white p-2 rounded-lg ">Delivered</a>
+                </td>
             </tr>
         @endforeach
     </table>
