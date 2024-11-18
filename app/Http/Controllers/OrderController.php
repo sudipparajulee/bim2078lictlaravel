@@ -47,4 +47,30 @@ class OrderController extends Controller
         });
         return back()->with('success', 'Order is now '.$status);
     }
+
+    public function storeEsewa(Request $request, $cartid)
+    {
+        $data = $request->data;
+        $data = base64_decode($data);
+        $data = json_decode($data);
+        $status = $data->status;
+        if($status === "COMPLETE")
+        {
+            //store function
+            $cart = Cart::find($cartid);
+            $order = new Order();
+            $order->product_id = $cart->product_id;
+            $order->price = $cart->product->price;
+            $order->quantity = $cart->quantity;
+            $order->payment_method = "eSewa";
+            $order->name = $cart->user->name;
+            $order->phone = $cart->user->phone;
+            $order->address = $cart->user->address;
+            $order->user_id = auth()->user()->id;
+            $order->status = "Pending";
+            $order->save();
+            $cart->delete();
+            return redirect('/')->with('success', 'Order has been placed successfully');
+        }
+    }
 }
