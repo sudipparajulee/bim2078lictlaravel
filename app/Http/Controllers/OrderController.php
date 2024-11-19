@@ -64,8 +64,8 @@ class OrderController extends Controller
             $order->quantity = $cart->quantity;
             $order->payment_method = "eSewa";
             $order->name = $cart->user->name;
-            $order->phone = $cart->user->phone;
-            $order->address = $cart->user->address;
+            $order->phone = 'N/A';
+            $order->address = 'N/A';
             $order->user_id = auth()->user()->id;
             $order->status = "Pending";
             $order->save();
