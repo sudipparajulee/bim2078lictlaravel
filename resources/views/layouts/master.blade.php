@@ -15,7 +15,7 @@
     @include('layouts.alert')
     <div class="flex justify-between px-20 bg-blue-500 text-white py-2">
         <div>
-            <a href=""><i class="ri-phone-fill"></i> 0234324234324</a>
+            <a href="" class="sm:block hidden"><i class="ri-phone-fill"></i> 0234324234324</a>
         </div>
         <div>
             @auth
