@@ -30,7 +30,7 @@
             @endauth
         </div>
     </div>
-    <nav class="flex justify-between items-center px-20 py-5 shadow-md sticky top-0 bg-white">
+    <nav class="lg:flex hidden justify-between items-center px-20 py-5 shadow-md sticky top-0 bg-white">
         <div>
             <img src="{{asset('logo.png')}}" alt="" class="h-16">
         </div>
@@ -46,10 +46,27 @@
         </div>
     </nav>
 
+    <nav class="lg:hidden block px-20 py-5 shadow-md sticky top-0 bg-white">
+        <div class="flex justify-between items-center">
+            <img src="{{asset('logo.png')}}" alt="" class="h-16">
+            <i class="ri-menu-3-line text-2xl border p-4 rounded-lg" onclick="toggleMenu()"></i>
+        </div>
+        <div class="hidden mt-4" id="mob-menu">
+            <a href="{{route('home')}}" class="p-2">Home</a>
+            @php
+                $categories = App\Models\Category::orderBy('priority')->get();
+            @endphp
+            @foreach($categories as $category)
+            <a href="{{route('categoryproduct',$category->id)}}" class="p-2">{{$category->name}}</a>
+            @endforeach
+
+        </div>
+    </nav>
+
     @yield('content')
 
     <footer>
-        <div class="grid grid-cols-4 px-20 gap-10 bg-gray-200 py-10">
+        <div class="grid md:grid-cols-4 sm:grid-cols-2 px-20 gap-10 bg-gray-200 py-10">
             <div>
                 <h2 class="text-2xl font-bold">LOGO</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quis, sapiente fugiat delectus ullam error culpa temporibus consequatur cum! Illo.</p>
@@ -88,5 +105,20 @@
             <p>&copy; 2024 All rights reserved</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu()
+        {
+            let menu = document.getElementById('mob-menu');
+            if(menu.classList.contains('hidden'))
+            {
+                menu.classList.remove('hidden');
+                menu.classList.add('grid');
+            }else{
+                menu.classList.add('hidden');
+                menu.classList.remove('grid');
+            }
+        }
+    </script>
 </body>
 </html>
