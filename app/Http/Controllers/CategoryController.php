@@ -9,8 +9,43 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // $categories = Category::all();
-        $categories = Category::orderBy('priority')->get();
+        // Fetch all categories
+        $categories = Category::all();
+
+        // Merge sort implementation
+        function mergeSort($array, $key)
+        {
+            if (count($array) <= 1) {
+                return $array;
+            }
+
+            $middle = count($array) / 2;
+            $left = array_slice($array, 0, $middle);
+            $right = array_slice($array, $middle);
+
+            $left = mergeSort($left, $key);
+            $right = mergeSort($right, $key);
+
+            return merge($left, $right, $key);
+        }
+
+        function merge($left, $right, $key)
+        {
+            $result = [];
+
+            while (count($left) > 0 && count($right) > 0) {
+                if ($left[0]->$key <= $right[0]->$key) {
+                    $result[] = array_shift($left);
+                } else {
+                    $result[] = array_shift($right);
+                }
+            }
+
+            return array_merge($result, $left, $right);
+        }
+
+        // Sort categories by priority
+        $categories = mergeSort($categories->toArray(), 'priority');
         return view('categories.index',compact('categories'));
     }
 
