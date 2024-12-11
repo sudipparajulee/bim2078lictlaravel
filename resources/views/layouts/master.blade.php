@@ -44,6 +44,10 @@
             @endforeach
 
         </div>
+        <form action="{{route('search')}}" method="GET">
+            <input type="search" placeholder="Search" class="p-2 border rounded-lg" name="qry" value="{{request()->qry}}" minlength="2" required>
+            <button type="submit" class="p-2 bg-blue-500 text-white rounded-lg">Search</button>
+        </form>
     </nav>
 
     <nav class="lg:hidden block px-20 py-5 shadow-md sticky top-0 bg-white">
