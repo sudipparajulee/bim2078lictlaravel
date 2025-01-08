@@ -31,5 +31,35 @@
             <h2 class="text-2xl font-bold">Delivered Orders</h2>
             <p class="text-3xl font-bold">{{$deliveredorders}}</p>
         </div>
+
+
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById('myChart');
+
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: {!! json_encode($allcategories) !!},
+          datasets: [{
+            label: '# of Votes',
+            data: {!! json_encode($categoryproduct) !!},
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            // y: {
+            //   beginAtZero: true
+            // }
+          }
+        }
+      });
+    </script>
 @endsection
