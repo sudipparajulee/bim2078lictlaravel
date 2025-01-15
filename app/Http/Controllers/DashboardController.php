@@ -25,6 +25,22 @@ class DashboardController extends Controller
             $categoryproduct[] = Product::where('category_id',$category->id)->count();
         }
         $allcategories = $allcategories->pluck('name')->toArray();
-        return view('dashboard',compact('totalproducts','totalcategories','totalorders','pendingorders','processingorders','deliveredorders','allcategories','categoryproduct'));
+
+        //for area chart
+        $date = \Carbon\Carbon::today()->subDays(90);
+        $orderdates = Order::where('created_at', '>=', $date)->pluck('created_at')->toArray();
+        $orderdates = array_map(function($date){
+            return date('Y-m-d', strtotime($date));
+        },$orderdates);
+        $orderdates = array_unique($orderdates);
+        $ordercount = [];
+        foreach($orderdates as $orderdate)
+        {
+            $ordercount[] = Order::whereDate('created_at',$orderdate)->count();
+        }
+        $orderdates = json_encode(array_values($orderdates));
+        $ordercount = json_encode(array_values($ordercount));
+
+        return view('dashboard',compact('totalproducts','totalcategories','totalorders','pendingorders','processingorders','deliveredorders','allcategories','categoryproduct','orderdates','ordercount'));
     }
 }

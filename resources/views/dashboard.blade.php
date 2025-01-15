@@ -36,10 +36,13 @@
         <div>
             <canvas id="myChart"></canvas>
         </div>
+
+    </div>
+    <div>
+        <canvas id="myChart2"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
       const ctx = document.getElementById('myChart');
 
@@ -62,4 +65,24 @@
         }
       });
     </script>
+
+<script>
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+      type: 'line',
+
+        data: {
+            labels: {!! $orderdates !!},
+            datasets: [{
+            label: 'Total Orders',
+            data: {!! $ordercount !!},
+            borderWidth: 1,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            tension: 0.1
+            }]
+        },
+    });
+  </script>
 @endsection
